@@ -1,0 +1,196 @@
+/* styles.css */
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #0a192f, #515b00, #000000); 
+    color: #e6f1ff; 
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    background-color: rgba(10, 25, 47, 0.85); 
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    color: #64ffda; 
+    margin-bottom: 20px;
+}
+
+/* --- Form Grid Layout --- */
+
+#passwordForm {
+    background-color: rgba(35, 53, 84, 0.7); 
+    padding: 25px; /* Slightly more padding */
+    border-radius: 5px;
+    margin-bottom: 30px;
+
+    /* Apply Grid */
+    display: grid;
+    grid-template-columns: auto 1fr; /* Col 1 for labels (auto width), Col 2 for inputs (takes remaining space) */
+    gap: 15px 10px; /* Row gap, Column gap */
+    align-items: center; /* Vertically align label and input within a row */
+}
+
+#passwordForm h2 {
+    grid-column: 1 / -1; /* Make heading span both columns */
+    text-align: center;
+    color: #64ffda;
+    margin-bottom: 15px; /* Adjust spacing */
+    border-bottom: 1px solid #233554;
+    padding-bottom: 10px;
+}
+
+/* Style form labels within the grid */
+#passwordForm label {
+    /* grid-column: 1; */ /* Implicitly in column 1 */
+    text-align: right; /* Align text to the right for classic form look */
+    padding-right: 10px; /* Add space between label and input */
+    color: #ccd6f6;
+    font-weight: bold;
+    /* Remove block display if previously set */
+    display: inline; /* Or keep default */
+}
+
+/* Style inputs and the password container within the grid */
+#passwordForm input[type="text"],
+#passwordForm input[type="password"],
+#passwordForm .password-input-container {
+    /* grid-column: 2; */ /* Implicitly in column 2 */
+    width: 100%; /* Make inputs/containers fill the grid column */
+    box-sizing: border-box; /* Include padding/border in width calculation */
+}
+
+/* Ensure password input specifically fills container */
+#passwordForm .password-input-container input[type="password"] {
+     /* flex-grow: 1; is still useful here inside the flex container */
+     flex-grow: 1; 
+     /* Reset width if needed, let flexbox handle it */
+     width: auto; 
+     margin-right: 5px; 
+}
+
+
+/* Container for password input and toggle button (still needs flex) */
+.password-input-container {
+    display: flex;
+    align-items: center; 
+    position: relative; 
+    /* Remove margin if inherited */
+    margin: 0; 
+}
+
+/* Style individual input fields */
+#passwordForm input[type="text"],
+#passwordForm input[type="password"] {
+    padding: 10px;
+    border: 1px solid #233554;
+    border-radius: 4px;
+    background-color: #0a192f;
+    color: #e6f1ff;
+    font-size: 1rem;
+    /* Remove fixed width if any */
+    width: 100%; /* Ensure they fill their container/grid cell */
+}
+
+
+/* Form Buttons Wrapper - Make it span grid and align buttons */
+.form-buttons {
+    grid-column: 1 / -1; /* Span both columns */
+    text-align: right; /* Align buttons to the right */
+    margin-top: 10px; /* Add some space above buttons */
+}
+
+
+/* General button styling (keep as is) */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-left: 10px; /* Use margin-left for spacing between buttons */
+}
+button:first-child {
+     margin-left: 0; /* No left margin on the first button in the container */
+}
+
+button:active {
+     transform: scale(0.98); 
+}
+
+/* Save button */
+#saveBtn {
+    background-color: #64ffda; 
+    color: #0a192f; 
+    font-weight: bold;
+}
+#saveBtn:hover { background-color: #7fffe0; }
+
+/* Cancel Edit button */
+#cancelEditBtn {
+    background-color: #8892b0; 
+    color: #0a192f;
+}
+#cancelEditBtn:hover { background-color: #a8b2d1; }
+
+/* Password visibility toggle button IN THE FORM */
+#togglePasswordVisibilityBtn {
+    padding: 5px 10px; 
+    font-size: 0.85em; 
+    background-color: #8892b0; 
+    color: #0a192f;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap; 
+    /* Remove margin if inherited */
+    margin-left: 0; 
+    margin-right: 0;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+#togglePasswordVisibilityBtn:hover { background-color: #a8b2d1; }
+
+
+/* --- Saved Passwords List Styling (Keep As Is) --- */
+.password-list-container { margin-top: 30px; }
+#passwordList { list-style: none; padding: 0; }
+.password-entry {
+    background-color: rgba(35, 53, 84, 0.7);
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border-left: 5px solid #64ffda; 
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+}
+.password-entry .details { flex-grow: 1; margin-right: 15px; }
+.password-entry span { display: block; margin-bottom: 5px; word-break: break-all; }
+.password-entry .website { font-weight: bold; color: #ccd6f6; font-size: 1.1em; }
+.password-entry .username { color: #a8b2d1; font-size: 0.95em; }
+.password-entry .password-display { color: #8892b0; font-family: monospace; display: flex; align-items: center; }
+.password-entry .password-text { margin-right: 10px; }
+.password-entry .actions { /* Container for buttons */ }
+.password-entry .actions button {
+    background: none; border: 1px solid #8892b0; color: #8892b0;
+    padding: 5px 10px; margin-left: 5px; margin-top: 5px; font-size: 0.9em;
+}
+.password-entry .actions button:hover { background-color: rgba(136, 146, 176, 0.2); color: #ccd6f6; border-color: #ccd6f6; }
+.password-entry .actions .show-hide-btn { border-color: #64ffda; color: #64ffda; }
+.password-entry .actions .show-hide-btn:hover { background-color: rgba(100, 255, 218, 0.2); color: #7fffe0; border-color: #7fffe0; }
+.password-entry .actions .delete-btn { border-color: #ff7b72; color: #ff7b72; }
+.password-entry .actions .delete-btn:hover { background-color: rgba(255, 123, 114, 0.2); color: #ffa8a1; border-color: #ffa8a1; }
+
+/* Utility Class */
+.hidden { display: none !important; }

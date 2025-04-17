@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Password Manager Concept</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Password Manager (Insecure Demo)</h1>
+        
+        <form id="passwordForm">
+            <h2>Add New / Edit Password</h2>
+            
+            <label for="website">Website/Service:</label>
+            <input type="text" id="website" required>
+            
+            <label for="username">Username/Email:</label>
+            <input type="text" id="username" required>
+           
+            <label for="password">Password:</label>
+            <div class="password-input-container"> 
+                <input type="password" id="password" required> 
+                <button type="button" id="togglePasswordVisibilityBtn">Show</button> 
+            </div>
+            
+            <input type="hidden" id="editId">
+
+            <div class="form-buttons">
+                 <button type="submit" id="saveBtn">Save Password</button>
+                 <button type="button" id="cancelEditBtn" class="hidden">Cancel Edit</button>
+            </div>
+        </form>
+
+        <div class="password-list-container">
+            <h2>Saved Passwords (Insecurely Stored!)</h2>
+            <ul id="passwordList">
+                </ul>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
